@@ -66,14 +66,10 @@ shinyServer(function(input, output, session) {
     
     c <- subset(main.data2, SaintScore>=as.numeric(str_cutoff), select = c(str_x,str_y,"Bait","PreyGene",str_size))
     colnames(c) <- c("x","y","Bait","PreyGene","size")
-    p <- ggplot(data=c, x=x, y=y,size=size)+ geom_point(data=c, aes(x=x, y=y,size=size), fill=input$bubble.color,color=input$outline.color,pch=21) + scale_size(range=scl_size)
-    p <- p + labs(x=str_x, y=str_y, size=str_size)
+    p <- ggplot(data=c, x=x, y=y,size=size)+ geom_point(data=c, aes(x=x, y=y,size=size), color=input$bubble.color) + scale_size(range=scl_size)
+    p <- p + geom_point(data=c, aes(x=x, y=y, size=size), colour=input$outline.color, shape=21) + labs(x=str_x, y=str_y, size=str_size)
     if(length(levels(c$Bait) > 1)) {p <- p + facet_wrap(~Bait, scales="free_y")}
-    if(str_label== TRUE & length(c$x)>=1) {set.seed=42; p <- p + ggrepel::geom_text_repel(data=c, aes(x=x,y=y,label=PreyGene),
-                                                                    segment.color="black",force=1, fontface='bold',
-                                                                    box.padding=unit(0.25,'lines'), 
-                                                                    point.padding=unit(0.25,'lines'),
-                                                                    max.iter=1e4, segment.size=0.5)}
+    if(str_label== TRUE & length(c$x)>=1) {p <- p + geom_text(data=c, aes(x=x,y=y,label=PreyGene, size=max(size)/5, vjust=0, hjust=0),colour=input$label.color, show_guide=FALSE)}
     if(input$theme== "b/w") {p <- p + theme_bw()}
     
     
@@ -82,60 +78,21 @@ shinyServer(function(input, output, session) {
       b <- subset(main.data2, CrapomePCT >=80 & SaintScore >=as.numeric(str_cutoff), select = c(str_x,str_y,"Bait","PreyGene",str_size,"CrapomePCT"))
       colnames(a) <- c("x","y","Bait","PreyGene","size", "CrapomePCT")
       colnames(b) <- c("x","y","Bait","PreyGene","size","CrapomePCT")
-      p <- ggplot(data=a, x=x, y=y,size=size) + geom_point(data=a,aes(x=x,y=y,size=size),fill=input$filt.color,pch=21,color=input$outline.color) +
-        scale_size(range=scl_size)# + geom_point(data=a, aes(x=x, y=y, size=size), colour=input$outline.color, shape=21)
+      p <- ggplot(data=a, x=x, y=y,size=size) + geom_point(data=a,aes(x=x,y=y,size=size),color=I(input$filt.color)) +
+        scale_size(range=scl_size) + geom_point(data=a, aes(x=x, y=y, size=size), colour=input$outline.color, shape=21)
       if(length(levels(a$Bait) > 1)) {p <- p + facet_wrap(~Bait, scales="free_y")}
-      if(str_label== TRUE & length(a$x)>=1) {set.seed=42; p <- p + ggrepel::geom_text_repel(data=a, aes(x=x,y=y,label=PreyGene),
-                                                                      segment.color="black",force=1, fontface='bold',
-                                                                      box.padding=unit(0.25,'lines'), 
-                                                                      point.padding=unit(0.25,'lines'), 
-                                                                      max.iter=1e4, segment.size=0.5)}
+      if(str_label== TRUE & length(a$x)>=1) {p <- p + geom_text(data=a, aes(x=x,y=y,label=PreyGene, size=max(size)/5, vjust=0, hjust=0),colour=input$label.color)}
       
-      p <- p + geom_point(data=b, aes(x=x, y=y, size=size, fill=CrapomePCT),color="black",pch=21) + 
-        scale_fill_gradient(limits=c(80, 100), low=input$filt.color, high=input$bubble.color) + 
-        labs(colour="CRAPome Probability \nof Specific Interaction (%)", x=str_x, y=str_y,size=str_size)# + 
-        #geom_point(data=b, aes(x=x, y=y, size=size), colour=input$outline.color, shape=21)
-      if(str_label== TRUE & length(b$x)>=1) {set.seed=42; p <- p + ggrepel::geom_text_repel(data=b, aes(x=x,y=y,label=PreyGene),
-                                                                      segment.color="black",force=1, fontface='bold',
-                                                                      box.padding=unit(0.25,'lines'), 
-                                                                      point.padding=unit(0.25,'lines'),
-                                                                      max.iter=1e4, segment.size=0.5)}
+      p <- p + geom_point(data=b, aes(x=x, y=y, size=size, color=CrapomePCT)) + 
+        scale_colour_gradient(limits=c(80, 100), low=input$filt.color, high=input$bubble.color) + 
+        labs(colour="CRAPome Probability \nof Specific Interaction (%)", x=str_x, y=str_y,size=str_size) + 
+        geom_point(data=b, aes(x=x, y=y, size=size), colour=input$outline.color, shape=21)
+      if(str_label== TRUE & length(b$x)>=1) {p <- p + geom_text(data=b, aes(x=x,y=y,label=PreyGene, size=max(size)/5, vjust=0, hjust=0),colour=input$label.color, show_guide=FALSE)}
       if(input$theme== "b/w") {p <- p + theme_bw()}
     }
     p
 }) 
 ################################################################################
-
-hist_plot <- reactive({
-  str_cutoff= paste0(input$main.cutoff)
-  str_x=paste0(input$hist.x)
-  main.data2 <- main.data[!(main.data$PreyGene %in% input$main.exclude),]
-  main.data2 <- subset(main.data2, select=c(str_x,"Bait"))
-  colnames(main.data2) <- c("x","Bait")
-  main.data2 <- subset(main.data2, main.data2$Bait %in% input$bait.choice)
-  ggplot(main.data2, aes(x=x,fill=Bait)) + geom_density(alpha=0.3) + 
-    scale_fill_brewer(palette = "Set1")
-})
-repl_corr <- reactive({
-  x=inter_df[input$corr_x == inter_df$V1,]$V4
-  y=inter_df[input$corr_y == inter_df$V1,]$V4
-  plot(x=x,y=y,pch=20,xlab=input$corr_x,ylab=input$corr_y)
-  abline(lm(y~x))
-  text(paste0("R-squared = ",round(summary(lm(y~x))$r.squared,2)),x=max(x)*0.1,y=max(y)*0.75)
-})
-prot_box <- reactive({
-  protein <- subset(main.data,input$prot.box %in% PreyGene) # not working
-  protein <- unique(protein$Prey)
-  prot_filt <- inter_df[protein == inter_df$V3,]
-  exp <- unique(prot_filt$V2)
-  d <- data.frame()
-  for (i in 1:length(exp)) {d <- rbind(d,prot_filt[exp[i]==prot_filt$V2,]$V4)}
-  d <- as.data.frame(t(d))
-  colnames(d) <- exp; rownames(d) <- NULL
-  par(mar = c(7.0, 4.1, 4.1, 2.1))
-  boxplot(d,ylab="Abundance", plot=TRUE,las = 3)
-})
-
 table_display <- reactive({
   str_cutoff= paste0(input$main.cutoff)
   main.data2 <- main.data[!(main.data$PreyGene %in% input$main.exclude),]
@@ -242,16 +199,7 @@ ontology_table <- reactive({
   })
 ################################################################################
    # Plot Bubble Graph
-  output$corr=renderPlot({
-    print(repl_corr())
-  })
-  output$box=renderPlot({
-    print(prot_box())
-  })
-  output$hist=renderPlot({
-    print(hist_plot())
-  }) 
-  output$bubbles=renderPlot({
+   output$bubbles=renderPlot({
      print(bubblebeam())
    })
   # Render Cytoscape Network
