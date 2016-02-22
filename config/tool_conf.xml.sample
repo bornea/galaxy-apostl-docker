@@ -31,7 +31,7 @@
 -->
   </section>
   <label id="blank1" text="" />
-  <section id="moffittTools" name="Moffitt Tools">>
+  <section id="moffittTools" name="APOSTL Tools">>
     <tool file="Moffitt_Tools/saint_wrapper.xml" />
     <tool file="Moffitt_Tools/SAINT_preprocessing_v6.xml" />
     <tool file="Moffitt_Tools/shiny_wrapper.xml" />
