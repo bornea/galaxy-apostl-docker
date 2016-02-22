@@ -47,9 +47,9 @@ merge_files <- function(SAINT_DF, prey_DF, crapome=FALSE) {
 
 #args <- commandArgs(trailingOnly = TRUE)
 #main.data <- merge_files(args[1], args[2], args[3])
-#main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt", "craptest.txt"))
+main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt", "craptest.txt"))
 #main.data <- as.data.frame(merge_files("list_kinases.txt", "prey.txt", "1448986614757_gp.txt"))
-main.data <- as.data.frame(merge_files("EGFR_list.txt", "EGFR_prey.txt", "EGFR_crap.txt"))
+#main.data <- as.data.frame(merge_files("EGFR_list.txt", "EGFR_prey.txt", "EGFR_crap.txt"))
 inter_df <- read.table("inter.txt", sep='\t', header=FALSE)
 replicates <- as.character(unique(inter_df$V1))
 #main.data <- as.data.frame(merge_files("test_list-1.txt","preytest-1.txt"))
