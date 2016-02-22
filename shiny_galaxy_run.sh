@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sh /galaxy-apostl-docker/run.sh --daemon
+sh /galaxy-apostl-docker/run.sh
 /opt/shiny-server/bin/shiny-server
