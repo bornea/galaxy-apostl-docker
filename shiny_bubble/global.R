@@ -14,7 +14,7 @@ library(mygene); library(httr); library(ggrepel)
 ## REQUIRED INPUT ##
 # 1) listfile: SAINTexpress generated "list.txt" file
 # 2) preyfile: APOSTL generated "prey.txt" file used to run SAINTexpress
-main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt", "craptest.txt.txt"))
+main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt"))
 # 3) interfile: APOSTL generated "inter.txt" file used to run SAINTexpress
 inter_df <- read.table("inter.txt", sep='\t', header=FALSE)
 
