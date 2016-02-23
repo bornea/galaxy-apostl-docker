@@ -1,19 +1,31 @@
-library(shiny)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-#library("devtools");
-#devtools::install_github("cytoscape/r-cytoscape.js"); #need for dependencies
-library(rcytoscapejs)
-library(jsonlite)
-library(clusterProfiler)
-#library(org.Hs.eg.db)
-library(mygene)
-library(httr)
-#install.packages('ggrepel',type='source') #updates to correct version
-library(ggrepel)
+###################################################################################################
+# R-code: APOSTL Global Variables
+# Author: Brent Kuenzi
+################################## Dependencies ###################################################
+library(shiny); library(dplyr); library(tidyr); library(ggplot2); library("devtools")
+library(rcytoscapejs); library(jsonlite); library(clusterProfiler); library(org.Hs.eg.db)
+library(mygene); library(httr); library(ggrepel)
+#devtools::install_github("cytoscape/r-cytoscape.js"); # need for dependencies
+#install.packages('ggrepel',type='source') # need for dependencies
 
+################################# Read in Data ####################################################
+### To run program call shiny::runApp() ###
 
+## REQUIRED INPUT ##
+# 1) listfile: SAINTexpress generated "list.txt" file
+# 2) preyfile: APOSTL generated "prey.txt" file used to run SAINTexpress
+main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt", "craptest.txt.txt"))
+# 3) interfile: APOSTL generated "inter.txt" file used to run SAINTexpress
+inter_df <- read.table("inter.txt", sep='\t', header=FALSE)
+
+## OPTIONAL INPUT ##
+# 4) crapome: raw output from Crapome Workflow 1 query (http://www.crapome.org)
+################################# Global Functions ################################################
+
+# Read in "About" section of APOSTL
+md_render <- readLines("APOSTL.html")
+
+# Define merge function and calculate crapome %
 merge_files <- function(SAINT_DF, prey_DF, crapome=FALSE) {
   SAINT <- read.table(SAINT_DF, sep='\t', header=TRUE)
   prey <- read.table(prey_DF, sep='\t', header=FALSE); colnames(prey) <- c("Prey", "Length", "PreyGene")
@@ -29,14 +41,11 @@ merge_files <- function(SAINT_DF, prey_DF, crapome=FALSE) {
     DF$CrapomePCT <- round(100 - (as.integer(DF$NumExp) / as.integer(DF$TotalExp) * 100), digits=2) #calculate crapome %
     
   }
-  DF$BFDR <- -log10(DF$BFDR)
   DF$FoldChange <- round(log2(DF$FoldChange),digits=2)
   colnames(DF)[(colnames(DF)=="FoldChange")] <- "log2(FoldChange)"
-  colnames(DF)[(colnames(DF)=="BFDR")] <- "-log10(BFDR)"
 
   DF$SAF <- DF$AvgSpec / DF$Length
-  by_bait <-  DF %>% group_by(Bait) %>% 
-    mutate("NSAF" = log(SAF/sum(SAF)))
+  by_bait <-  DF %>% group_by(Bait) %>% mutate("NSAF" = log(SAF/sum(SAF)))
   by_bait <- filter(by_bait, NSAF > -Inf)
   
   colnames(by_bait)[colnames(by_bait)=="NSAF"] <- "ln(NSAF)"
@@ -44,22 +53,15 @@ merge_files <- function(SAINT_DF, prey_DF, crapome=FALSE) {
   return(by_bait[!duplicated(by_bait),])
 }
 
-
-#args <- commandArgs(trailingOnly = TRUE)
-#main.data <- merge_files(args[1], args[2], args[3])
-main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt", "craptest.txt"))
-#main.data <- as.data.frame(merge_files("list_kinases.txt", "prey.txt", "1448986614757_gp.txt"))
-#main.data <- as.data.frame(merge_files("EGFR_list.txt", "EGFR_prey.txt", "EGFR_crap.txt"))
-inter_df <- read.table("inter.txt", sep='\t', header=FALSE)
+########################### Define Global Variables ############################
 replicates <- as.character(unique(inter_df$V1))
-#main.data <- as.data.frame(merge_files("test_list-1.txt","preytest-1.txt"))
-
 preys <- as.character(main.data$PreyGene)
 baits <- as.character(unique(main.data$Bait))
+
+# Cytoscape Network visualization options
 shapes <- c("rectangle", "roundrectangle", "ellipse", "triangle", "pentagon", "hexagon", "heptagon", "octagon", "star", "diamond", "vee", "rhomboid")
 layouts <- c("null","random","grid","circle","concentric","breadthfirst","cose")
-# Copied from http://www.99colors.net/color-names
-colors <- c("Air Force blue" = "#5D8AA8",
+colors <- c("Air Force blue" = "#5D8AA8", # Copied from http://www.99colors.net/color-names
             "Alice blue" = "#F0F8FF",
             "Alizarin crimson" = "#E32636",
             "Almond" = "#EFDECD",

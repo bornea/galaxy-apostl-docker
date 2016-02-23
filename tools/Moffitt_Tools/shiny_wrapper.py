@@ -64,7 +64,7 @@ inter_file.close()
 #os.system(cmd1)
 
 with open("shiny.txt", "wt") as x:
-    x.write("<html><body> open <a href=\"http://proteomicspipeline.moffitt.usf.edu:3838/" +
+    x.write("<html><body> open <a href=\"http://ec2-54-218-15-171.us-west-2.compute.amazonaws.com:3838/" +
             str(stamped_app) + "\">Shiny Bubblebeam</a> in your browser to view shiny app. If there are issues with the sizing within galaxy you can right" 
             + " click and open in a new tab or window.</body></html>")
 
