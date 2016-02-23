@@ -30,7 +30,7 @@ FDR2 = sys.argv[3]
 spec_max = sys.argv[4]
 os.rename(sys.argv[1], "saint_input.txt")
 
-cmd = r"/galaxy-apostl-docker/dotplot.bash -f saint_input.txt" + r" -c b -s " + str(FDR1) + r" -t " + str(FDR2) + " -m " + str(spec_max)
+cmd = r"/Dotplot_Release/dotplot.bash -f saint_input.txt" + r" -c b -s " + str(FDR1) + r" -t " + str(FDR2) + " -m " + str(spec_max)
 os.system(cmd)
 
 cmd1 = r"cp -a ./Output_saint_input/. ."

@@ -12,25 +12,25 @@ go_file = sys.argv[8]
 output_file = sys.argv[9]
 
 def default_run(inter_file1,prey_file1,bait_file1,output_file1,num_of_rep1):
-	cmd = r"/galaxy-apostl-docker/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc " + r"-R" + str(num_of_rep1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) 
+	cmd = r"/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc " + r"-R" + str(num_of_rep1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) 
 	os.system(cmd) 
 	open('list.txt')
 	os.rename('list.txt', str(output_file1)) 
 
 def with_L(inter_file1,prey_file1,bait_file1,output_file1,vc_num1,num_of_rep1):
-	cmd = r"/galaxy-apostl-docker/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc "+ r"-R" + str(num_of_rep1) + " " + r"-L" + str(vc_num1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) 
+	cmd = r"/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc "+ r"-R" + str(num_of_rep1) + " " + r"-L" + str(vc_num1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) 
 	os.system(cmd) 
 	open('list.txt')
 	os.rename('list.txt', str(output_file1)) 
 
 def external_data_no_L(inter_file1,prey_file1,bait_file1,output_file1,go_file1,num_of_rep1):
-	cmd = r"/galaxy-apostl-docker/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc "+ r"-R" + str(num_of_rep1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) + " " + str(go_file1)
+	cmd = r"/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc "+ r"-R" + str(num_of_rep1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) + " " + str(go_file1)
 	os.system(cmd) 
 	open('list.txt')
 	os.rename('list.txt', str(output_file1)) 
 
 def external_data_with_L(inter_file1,prey_file1,bait_file1,output_file1,go_file1,num_of_rep1,vc_num1):
-	cmd = r"/galaxy-apostl-docker/SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc "+ r"-R" + str(num_of_rep1) + " " + r"-L" + str(vc_num1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) + " " + str(go_file1)
+	cmd = r"SAINTexpress_v3.6.1__2015-05-03/bin/SAINTexpress-spc "+ r"-R" + str(num_of_rep1) + " " + r"-L" + str(vc_num1) + " " + str(inter_file1) + " " + str(prey_file1) + " " + str(bait_file1) + " " + str(go_file1)
 	os.system(cmd) 
 	open('list.txt')
 	os.rename('list.txt', str(output_file1)) 
