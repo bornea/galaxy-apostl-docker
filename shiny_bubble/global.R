@@ -14,10 +14,12 @@ library(mygene); library(httr); library(ggrepel)
 ## REQUIRED INPUT ##
 # 1) listfile: SAINTexpress generated "list.txt" file
 # 2) preyfile: APOSTL generated "prey.txt" file used to run SAINTexpress
-main.data <- as.data.frame(merge_files("test_list.txt", "preytest.txt"))
-# 3) interfile: APOSTL generated "inter.txt" file used to run SAINTexpress
-inter_df <- read.table("inter.txt", sep='\t', header=FALSE)
+#main.data <- merge_files("EGFR_list.txt", "EGFR_prey.txt", "EGFR_crap.txt")
+#main.data <- as.data.frame(merge_files("EGFR_MQ_list.txt", "EGFR_MQ_prey.txt", "EGFR_MQ_crap.txt"))
+#main.data <- as.data.frame(merge_files("EGFR_MQ_ER_v_WT_GFP_list.txt", "EGFR_MQ_prey.txt", "EGFR_MQ_crap.txt"))
 
+# 3) interfile: APOSTL generated "inter.txt" file used to run SAINTexpress
+inter_df <- read.table("EGFR_MQ_inter.txt", sep='\t', header=FALSE)
 ## OPTIONAL INPUT ##
 # 4) crapome: raw output from Crapome Workflow 1 query (http://www.crapome.org)
 ################################# Global Functions ################################################
@@ -52,7 +54,7 @@ merge_files <- function(SAINT_DF, prey_DF, crapome=FALSE) {
   by_bait$SAF <- NULL
   return(by_bait[!duplicated(by_bait),])
 }
-
+main.data <- merge_files("EGFR_list.txt", "EGFR_prey.txt", "EGFR_crap.txt")
 ########################### Define Global Variables ############################
 replicates <- as.character(unique(inter_df$V1))
 preys <- as.character(main.data$PreyGene)

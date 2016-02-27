@@ -7,7 +7,7 @@ $(document).ready(function() {
       var result = cy.png(); 
       //Shiny.onInputChange("imgContent", result);
       console.log("imgContent: " + result);
-      // Check proper attribution from stackoverflow.
+      
       // From: http://stackoverflow.com/questions/25087009/trigger-a-file-download-on-click-of-button-javascript-with-contents-from-dom
       dl = document.createElement('a');
       document.body.appendChild(dl);
