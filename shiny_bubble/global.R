@@ -19,7 +19,7 @@ library(mygene); library(httr); library(ggrepel)
 #main.data <- as.data.frame(merge_files("EGFR_MQ_ER_v_WT_GFP_list.txt", "EGFR_MQ_prey.txt", "EGFR_MQ_crap.txt"))
 
 # 3) interfile: APOSTL generated "inter.txt" file used to run SAINTexpress
-inter_df <- read.table("EGFR_MQ_inter.txt", sep='\t', header=FALSE)
+inter_df <- read.table("inter.txt", sep='\t', header=FALSE)
 ## OPTIONAL INPUT ##
 # 4) crapome: raw output from Crapome Workflow 1 query (http://www.crapome.org)
 ################################# Global Functions ################################################
