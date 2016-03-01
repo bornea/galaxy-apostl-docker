@@ -32,14 +32,14 @@
       <option value="MaxQuant">MaxQuant</option>
       <option value="Scaffold">Scaffold</option> 
     </param>
-    <param format="dat" name="input" type="data" label="Scaffold or MaxQuant peptides Output"/>
+    <param format="dat" name="input" type="data" label="Scaffold or MaxQuant proteinGroup Output"/>
     <param type="boolean" name="preybool" checked="true" label="Create Prey File"/>
     <param type="data" name="fasta_db" format="fasta"  label="Provide Uniprot Fasta database" optional="true"/>
     <param name="bait_bool" type="boolean" checked="true" label="Are You Providing Your Own bait file?"/>
     <param type="data" format="dat" name="bait_file_in" label="Bait File" optional="true"/>
     <repeat name="bait" title="Bait Create">
       <param name="bait1" type="text" size="100" label="Bait"/>
-      <param name="assign" type="text" size="100" label="Bait Assignment"/>
+      <param name="assign" type="text" size="100" label="Group Assignment"/>
       <param name="T_C" type="boolean" checked="true" label="Is this a Control?"/> 
     </repeat>
 
@@ -50,8 +50,12 @@
     <data format="txt" name="Bait_file" label="Bait File" />
   </outputs>
   <stdio>
-    <regex match="error"
+    <regex match="Error|error"
 	   source="stdout"
+           level="fatal"
+           description="Unknown error"/>
+    <regex match="Error|error"
+     source="stderr"
            level="fatal"
            description="Unknown error"/>
     <regex match="Error: bad bait"
@@ -67,13 +71,10 @@
     </test>
   </tests>
   <help>
-<!-- We should provide a set of example files for the sysadmin to test that everything works since there's a lot going on with the various dependencies and files that we're generating. 
-AB: Agreed, actually it is required when for deployment in usegalaxy and usegalaxy-p-->
 
 Pre-processing:
 
-APOSTL is able to recognize either a Scaffold "Samples Report" file (tab-delimited txt file) <!-- What version Scaffold? We should test with versions 2, 3, and 4 --> or the "peptides.txt" file output in the MaxQuant "txt" output folder <!-- What version of MaxQuant? Unfortunately they will randomly change the formatting or names of the headers without warning, so maybe we can say "tested with MaxQuant version x.x.x. Additionally, will this only work for label free? We should indicate. 
-AB: Will look into this find out versions prior to publishing but don't have info on hand --> No modifications should be made to these files. Using the "Bait Create" tool, you can create your "bait.txt" file. It is important that the individual bait names match the bait names within your scaffold or MaxQuant output. APOSTL uses the bait file to findthe user's baits of interest. Additionally there is an option to make the prey file (Y/N). When making a prey file, APOSTL queries Uniprot ( http://www.uniprot.org ) in order to extract protein amino acidlengths and gene names. This takes several minutes depending on your internet connection. Some users may want to run SAINTexpress using the same data set while changing which baits are considered test or control It is useful to toggle "Make Prey" off in order to save time by circumventing this step as the same prey file can be used for both SAINTexpress runs. 
+APOSTL is able to recognize either a Scaffold "Samples Report" file (tab-delimited txt file) or the "peptides.txt" file output in the MaxQuant "txt" output folder. No modifications should be made to these files. Using the "Bait Create" tool, you can create your "bait.txt" file. It is important that the individual bait names match the bait names within your scaffold or MaxQuant output. APOSTL uses the bait file to findthe user's baits of interest. Additionally there is an option to make the prey file (Y/N). When making a prey file, APOSTL queries Uniprot ( http://www.uniprot.org ) in order to extract protein amino acidlengths and gene names. This takes several minutes depending on your internet connection. Some users may want to run SAINTexpress using the same data set while changing which baits are considered test or control It is useful to toggle "Make Prey" off in order to save time by circumventing this step as the same prey file can be used for both SAINTexpress runs. 
 
 INPUTS:
 
