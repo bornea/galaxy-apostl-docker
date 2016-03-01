@@ -39,9 +39,6 @@ Species = sys.argv[4]
 cyto_file = sys.argv[5]
 db_path = sys.argv[6]
 
-tool_path = r"/galaxy-apostl-docker/tools/Moffitt_Tools/"
-fasta_db = str(tool_path)  + "/SwissProt_HUMAN_2014_08.fasta"
-
 
 class ReturnValue1(object):
     def __init__(self, uniprot_acc, gene, swissprot):
@@ -188,24 +185,21 @@ def cytoscape(dd_network, listfile, SAINTscore):
         for i in data:
             if i[SS] >= SAINTscore:
                 filt_data.append(get_info(i[1]).sp)
-        header = ["Prey", "Interactions"]
-        header = '\t'.join(header)
-        y.write(header + '\n')
         for i in filt_data:
-            if dd_network[i[1]] != []:
+            if dd_network[i] != []:
                 lst = []
-                for j in dd_network[i[1]]:
+                for j in dd_network[i]:
                     lst.append(j)
                 for j in lst:
-                    y.write(i[1]+'\t'+'pp'+'\t' + j+'\n')
+                    y.write(i+'\t'+'pp'+'\t' + j+'\n')
 
 
 if Species == "Human":
-    CPDB = readtab(str(tool_path) + 'ConsensusPathDB_human_PPI.txt')
+    CPDB = readtab(str(db_path) + 'ConsensusPathDB_human_PPI.txt')
 if Species == "Yeast":
-    CPDB = readtab(str(tool_path) + 'ConsensusPathDB_yeast_PPI.txt')
+    CPDB = readtab(str(db_path) + 'ConsensusPathDB_yeast_PPI.txt')
 if Species == "Mouse":
-    CPDB = readtab(str(tool_path) +'ConsensusPathDB_mouse_PPI.txt')
+    CPDB = readtab(str(db_path) +'ConsensusPathDB_mouse_PPI.txt')
 if __name__ == '__main__':
     main(listfile, SAINT_cutoff, Int_conf, Species)
     os.rename('network.sif', str(cyto_file))
