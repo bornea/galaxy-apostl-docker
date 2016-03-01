@@ -72,7 +72,7 @@ def readtab(infile):
 
 def read_listfile(listfile): 
     # Get data, proteins and header from scaffold output
-    dupes = readtab(listfile)
+    dupes = listfile.readlines()
     header = dupes[0]
     prot_start = header.index("PreyGene")-1
     data = dupes[1:]
