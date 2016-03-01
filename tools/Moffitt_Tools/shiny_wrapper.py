@@ -72,7 +72,6 @@ input_file.close()
 prey_file.close()
 inter_file.close()
 
-crap_file.close()
 
 #cmd1 = r"touch '/srv/shiny-server/" + str(stamped_app) + r"/restart.txt"
 #os.system(cmd1)
