@@ -71,9 +71,8 @@ def readtab(infile):
 
 
 def read_listfile(listfile): 
-    list_data = open(listfile, "r")
     # Get data, proteins and header from scaffold output
-    dupes = list_data.readlines()
+    dupes = readtab(listfile)
     header = dupes[0]
     prot_start = header.index("PreyGene")-1
     data = dupes[1:]
