@@ -40,7 +40,7 @@ if sys.argv[3] == 'None':
     glob_write = open('/srv/shiny-server/'+ str(stamped_app) + '/global.R', 'w')
     for code_line in glob_manip:
         if r"main.data <- merge_files" in code_line:
-            glob_write.write(r"main.data <- merge_files(\"EGFR_list.txt\", \"EGFR_prey.txt\", FALSE)")
+            glob_write.write(r"main.data <- merge_files("EGFR_list.txt", "EGFR_prey.txt", FALSE)")
         else:
             glob_write.write(code_line)
 else: 
