@@ -32,7 +32,7 @@ infile = sys.argv[1]
 prey = sys.argv[2] 
 # Y or N boolean from Galaxy.
 fasta_db = sys.argv[3]
-tool_path = r"/home/bornea/galaxy_moffitt_dev/tools/Moffitt_Tools/bubblebeam"
+tool_path = r"/galaxy-apostl-docker/tools/Moffitt_Tools/"
 if fasta_db == "None":
     fasta_db = str(tool_path)  + "/SwissProt_HUMAN_2014_08.fasta"
 make_bait = sys.argv[6]
