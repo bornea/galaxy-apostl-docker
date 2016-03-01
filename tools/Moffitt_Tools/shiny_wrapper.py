@@ -32,13 +32,16 @@ stamped_app = r"shiny_bubble" + str(time.strftime('_%d_%m_%Y_%H_%M'))
 cmd = r"mkdir /srv/shiny-server/" + str(stamped_app)
 os.system(cmd)
 
+cmd1 = r"cp -r /srv/shiny-server/shiny_bubble/. /srv/shiny-server/" + str(stamped_app)
+os.system(cmd1)
+
 if sys.argv[3] == 'None':
     crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
     glob_manip = open('/srv/shiny-server/shiny_bubble/global.R', 'r')
     glob_write = open('/srv/shiny-server/'+ str(stamped_app) + '/global.R', 'w')
     for code_line in glob_manip:
         if r"main.data <- as.data.frame\(merge_files" in code_line:
-            glob_write.write(r"main.data <- as.data.frame(merge_files(\"EGFR_list.txt\", \"EGFR_prey.txt\", \"FALSE\"))")
+            glob_write.write(r"main.data <- as.data.frame(merge_files(\"EGFR_list.txt\", \"EGFR_prey.txt\", FALSE))")
         else:
             glob_write.write(code_line)
 else: 
@@ -64,8 +67,7 @@ for line in inter_input:
 #crapome.close()
 
 
-cmd1 = r"cp -r /srv/shiny-server/shiny_bubble/. /srv/shiny-server/" + str(stamped_app)
-os.system(cmd1)
+
 
 input_file.close()
 prey_file.close()
