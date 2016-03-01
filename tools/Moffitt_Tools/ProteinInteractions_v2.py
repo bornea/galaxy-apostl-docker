@@ -86,7 +86,25 @@ def read_listfile(listfile):
 def get_info(uniprot_accession_in): 
     # Get aa lengths and gene name.
     error = open('error proteins.txt', 'a+')
-    data = open(fasta_db, 'r')
+    i = 0
+    while i == 0:
+        try:
+            data = urllib2.urlopen("http://www.uniprot.org/uniprot/" + uniprot_accession_in
+                + ".fasta")
+            break
+        except urllib2.HTTPError, err:
+            i = i + 1
+            if i == 50:
+                sys.exit("More than 50 errors. Check your file or try again later.")
+            if err.code == 404:
+                error.write(uniprot_accession_in + '\t' + "Invalid URL. Check protein" + '\n')
+                seqlength = 'NA'
+                genename = 'NA'
+                return ReturnValue1(seqlength, genename)
+            elif err.code == 302:
+                sys.exit("Request timed out. Check connection and try again.")
+            else:
+                sys.exit("Uniprot had some other error")
     lines = data.readlines()
     header = lines[0]
     lst = header.split('|')
