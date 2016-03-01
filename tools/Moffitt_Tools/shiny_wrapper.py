@@ -32,21 +32,21 @@ stamped_app = r"shiny_bubble" + str(time.strftime('_%d_%m_%Y_%H_%M'))
 cmd = r"mkdir /srv/shiny-server/" + str(stamped_app)
 os.system(cmd)
 
-#if sys.argv[3] == 'None':
-#    crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
-#    glob_manip = open('/srv/shiny-server/shiny_bubble/global.R', 'r')
-#    glob_write = open('/srv/shiny-server/'+ str(stamped_app) + '/global.R', 'w')
-#    for code_line in glob_manip:
-#        if r"main.data <- as.data.frame\(merge_files" in code_line:
-#            glob_write.write(r"main.data <- as.data.frame(merge_files(\"EGFR_list.txt\", \"EGFR_prey.txt\"))")
-#        else:
-#            glob_write.write(code_line)
-#else: 
-#    crapome = open(sys.argv[3], 'r')
-#    crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
-#    for line in crapome:
-#        crap_file.write(line)
-#    crapome.close()
+if sys.argv[3] == 'None':
+    crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
+    glob_manip = open('/srv/shiny-server/shiny_bubble/global.R', 'r')
+    glob_write = open('/srv/shiny-server/'+ str(stamped_app) + '/global.R', 'w')
+    for code_line in glob_manip:
+        if r"main.data <- as.data.frame\(merge_files" in code_line:
+            glob_write.write(r"main.data <- as.data.frame(merge_files(\"EGFR_list.txt\", \"EGFR_prey.txt\", FALSE))")
+        else:
+            glob_write.write(code_line)
+else: 
+    crapome = open(sys.argv[3], 'r')
+    crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
+    for line in crapome:
+        crap_file.write(line)
+    crapome.close()
 
 input_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_list.txt', 'w')
 for line in input_list:
@@ -57,11 +57,11 @@ for line in prey_input:
 inter_file = open('/srv/shiny-server/'+ str(stamped_app) + '/inter.txt', 'w')
 for line in inter_input:
     inter_file.write(line)
-crapome = open(sys.argv[3], 'r')
-crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
-for line in crapome:
-    crap_file.write(line)
-crapome.close()
+#crapome = open(sys.argv[3], 'r')
+#crap_file = open('/srv/shiny-server/'+ str(stamped_app) + '/EGFR_crap.txt', 'w')
+#for line in crapome:
+#    crap_file.write(line)
+#crapome.close()
 
 
 cmd1 = r"cp -r /srv/shiny-server/shiny_bubble/. /srv/shiny-server/" + str(stamped_app)
@@ -77,7 +77,7 @@ crap_file.close()
 #os.system(cmd1)
 
 with open("shiny.txt", "wt") as x:
-    x.write("<html><body> Open <a href=\"http://ec2-54-213-221-126.us-west-2.compute.amazonaws.com:3838/" +
+    x.write("<html><body> Open <a href=\"http://54.213.221.126:3838/" +
             str(stamped_app) + "\">Shiny Bubblebeam</a> in your browser to view shiny app. If there are issues with the sizing within galaxy you can right" 
             + " click and open in a new tab or window.</body></html>")
 
