@@ -37,8 +37,7 @@ SAINT_cutoff = sys.argv[2]
 Int_conf = sys.argv[3]
 Species = sys.argv[4]
 cyto_file = sys.argv[5]
-db_path = sys.argv[6]
-
+db_path = r"/galaxy-apostl-docker/tools/Moffitt_Tools/"
 
 class ReturnValue1(object):
     def __init__(self, uniprot_acc, gene, swissprot):
