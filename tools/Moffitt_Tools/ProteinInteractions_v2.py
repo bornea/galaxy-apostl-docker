@@ -183,11 +183,11 @@ def cytoscape(dd_network, listfile, SAINTscore):
 
 
 if Species == "Human":
-    CPDB = readtab(str(db_path) + 'ConsensusPathDB_human_PPI.txt')
+    CPDB = readtab(str(tool_path) + 'ConsensusPathDB_human_PPI.txt')
 if Species == "Yeast":
-    CPDB = readtab(str(db_path) + 'ConsensusPathDB_yeast_PPI.txt')
+    CPDB = readtab(str(tool_path) + 'ConsensusPathDB_yeast_PPI.txt')
 if Species == "Mouse":
-    CPDB = readtab(str(db_path) +'ConsensusPathDB_mouse_PPI.txt')
+    CPDB = readtab(str(tool_path) +'ConsensusPathDB_mouse_PPI.txt')
 if __name__ == '__main__':
     main(listfile, SAINT_cutoff, Int_conf, Species)
     os.rename('network.sif', str(cyto_file))
