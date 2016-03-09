@@ -83,7 +83,6 @@ if bait_bool == 'false':
 else:
     bait_temp_file = open(sys.argv[10], 'r')
     bait_cache = bait_temp_file.readlines()
-    print bait_cache
     bait_file_tmp = open("bait.txt", "wr")
     for cache_line in bait_cache:
         bait_file_tmp.write(cache_line)
@@ -120,7 +119,7 @@ def main(Scaffold_input, baits):
 
 
 def get_info(uniprot_accession_in): 
-    # Get aminoacid lengths and gene name.
+    # Get aa lengths and gene name.
     error = open('error proteins.txt', 'a+')
     data = open(fasta_db, 'r')
     data_lines = data.readlines()
@@ -129,39 +128,24 @@ def get_info(uniprot_accession_in):
     count = 0
     for data_line in data_lines:
         if ">sp" in data_line:
-            namer = data_line.split("|")[2]
-        if uniprot_accession_in == data_line.split("|")[1]:
-            match = count + 1
-            if 'GN=' in data_line:
-                lst = data_linedata_line.split('GN=')
-                lst2 = lst[1].split(' ')
-                genename = lst2[0]
-            if 'GN=' not in data_line:
-                genename = 'NA'
-            while ">sp" not in data_lines[match]:
-                if match <= db_len:
-                    seqlength = seqlength + len(data_lines[match].strip())
-                    match = match + 1
-                else:
-                    break
-            return ReturnValue1(seqlength, genename)
-        elif uniprot_accession_in == namer.split(" ")[0]:
-            match = count + 1
-            # Ensures consistent spacing throughout.
-            if 'GN=' in data_line:
-                lst = data_line.split('GN=')
-                lst2 = lst[1].split(' ')
-                genename = lst2[0]
-            if 'GN=' not in data_line:
-                genename = 'NA'
-            while ">sp" not in lines[match]:
-                if match <= db_len:
-                    seqlength = seqlength + len(lines[match].strip())
-                    match = match + 1
-                else:
-                    break
-            return ReturnValue1(seqlength, genename)
+            if uniprot_accession_in == data_line.split("|")[1]:
+                match = count + 1
+                if 'GN=' in data_line:
+                    lst = data_line.split('GN=')
+                    lst2 = lst[1].split(' ')
+                    genename = lst2[0]
+                if 'GN=' not in data_line:
+                    genename = 'NA'
+                while ">sp" not in data_lines[match]:
+                    if match <= db_len:
+                        seqlength = seqlength + len(data_lines[match].strip())
+                        match = match + 1
+                    else:
+                        break
+                return ReturnValue1(seqlength, genename)
         count = count + 1
+
+
     if seqlength == 0:
         error.write(uniprot_accession_in + '\t' + "Uniprot not in Fasta" + '\n')
         error.close
