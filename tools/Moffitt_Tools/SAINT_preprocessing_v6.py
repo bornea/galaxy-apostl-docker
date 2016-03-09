@@ -83,7 +83,6 @@ if bait_bool == 'false':
 else:
     bait_temp_file = open(sys.argv[10], 'r')
     bait_cache = bait_temp_file.readlines()
-    print bait_cache
     bait_file_tmp = open("bait.txt", "wr")
     for cache_line in bait_cache:
         bait_file_tmp.write(cache_line)
