@@ -156,7 +156,7 @@ def get_info(uniprot_accession_in):
                 genename = 'NA'
             while ">sp" not in data_lines[match]:
                 if match <= db_len:
-                    seqlength = seqlength + len(lines[match].strip())
+                    seqlength = seqlength + len(data_lines[match].strip())
                     match = match + 1
                 else:
                     break
