@@ -78,7 +78,7 @@ inter_file.close()
 
 with open("shiny.txt", "wt") as x:
     x.write("<html><body> Open <a href=\"http://54.213.221.126:3838/" +
-            str(stamped_app) + "\">Shiny Bubblebeam</a> in your browser to view shiny app. If there are issues with the sizing within galaxy you can right" 
+            str(stamped_app) + "\">APOSTL Interactive Analysis</a> in your browser to view shiny app. If there are issues with the sizing within galaxy you can right" 
             + " click and open in a new tab or window.</body></html>")
 
 os.rename('shiny.txt', str(sys.argv[5]))
