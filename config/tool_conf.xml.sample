@@ -34,9 +34,9 @@
   <section id="moffittTools" name="APOSTL Tools">>
     <tool file="Moffitt_Tools/saint_wrapper.xml" />
     <tool file="Moffitt_Tools/SAINT_preprocessing_v6.xml" />
-    <tool file="Moffitt_Tools/shiny_wrapper.xml" />
-    <tool file="Moffitt_Tools/Bubblebeam_For_SAINT_wrapper.xml" />
-    <tool file="Moffitt_Tools/dotplot_runner.xml" />
+    <tool file="Moffitt_Tools/APOSTL_Interactive_Analysis.xml" />
+    <tool file="Moffitt_Tools/APOSTL_Static_Bubblegraph_Generator.xml" />
+    <tool file="Moffitt_Tools/ProHits_DotPlot_Generator.xml" />
     <tool file="Moffitt_Tools/ProteinInteractions_v2.xml" />
   </section>
   <label id="blank2" text="" />

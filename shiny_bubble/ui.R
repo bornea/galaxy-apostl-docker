@@ -30,6 +30,7 @@ shinyUI(
                     ),
              column(4,selectInput("correlation.file", "Bubble Plot File Type", choices=c(".pdf",".png",".tif",".svg",".eps",".jpg"), selected=".png"),
                     downloadButton('correlation.down', 'Download Bubble Plot')),
+             column(4, radioButtons("corr_log","Log Transform?",choices=c("Yes","No"),selected="No")),
             plotOutput("corr",width="100%",height="500px")
              ),
     ################################ Boxplots #############################
@@ -40,7 +41,8 @@ shinyUI(
                                 choices=c("Default","b/w","minimal","classic","dark","linedraw"),
                                 selected="Default")),
               column(4,selectInput("box.color","Select Box Color", multiple=FALSE, 
-                                  choices=colors, selected="#5D8AA8")),
+                                  choices=colors, selected="#5D8AA8"),
+                     radioButtons("prot_log","Log Transform?",choices=c("Yes","No"),selected="No")),
              column(4,
                     selectInput("box.file", "Bubble Plot File Type", choices=c(".pdf",".png",".tif",".svg",".eps",".jpg"), selected=".png"),
                     downloadButton('box.down', 'Download Bubble Plot')),

@@ -1,6 +1,6 @@
-<tool id="shiny_wrapper" name="Shiny Bubblebeam">
+<tool id="APOSTL_Interactive_Analysis" name="APOSTL Interactive Analysis">
   <description></description>
-  <command interpreter="python">shiny_wrapper.py $list_file $prey_file $crapome $inter_file $output</command>
+  <command interpreter="python">APOSTL_Interactive_Analysis.py $list_file $prey_file $crapome $inter_file $output</command>
   <inputs>
     <param format="txt" name="list_file" type="data" label="List File"/>
     <param format="txt" name="prey_file" type="data" label="Prey File"/>

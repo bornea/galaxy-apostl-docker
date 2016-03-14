@@ -1,4 +1,4 @@
-<tool id="saint_wrapper" name="SAINT">
+<tool id="saint_wrapper" name="SAINTexpress">
   <description></description>
   <command interpreter="python">saint_wrapper.py $inter_input $prey_input $bait_input $rep_num $vc_bool $vc_num $go_bool $go_file $SAINT_output</command>
   <inputs>

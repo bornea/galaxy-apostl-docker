@@ -168,11 +168,20 @@ hist_plot <- reactive({
 repl_corr <- reactive({
   x1 = inter_df[input$corr_x == inter_df$V1,]$V4
   y1 = inter_df[input$corr_y == inter_df$V1,]$V4
+  if(input$corr_log == "No"){
   p <- ggplot(x=x1,y=y1) + geom_point(aes(x=x1,y=y1),size=rel(5),pch=21,color="black",fill=input$corr.color) + 
        ylab(input$corr_y) + xlab(input$corr_x) + geom_smooth(aes(x=x1,y=y1),method="lm",color="black",linetype="dashed")
   p <- p + geom_label(aes(label=paste0("R-squared = ",round(summary(lm(y1~x1))$r.squared,2)),
                      x=max(x1)*0.1,y=max(y1)*0.75),size=rel(5), fontface="bold",
-                     label.padding=unit(0.5,"lines"))
+                     label.padding=unit(0.5,"lines"))}
+  if(input$corr_log == "Yes"){
+    x2 <- log10(x1); y2 <- log10(y1)
+    x2[!is.finite(x2)] <- 0; y2[!is.finite(y2)] <- 0
+    p <- ggplot(x=x2,y=y2) + geom_point(aes(x=x2,y=y2),size=rel(5),pch=21,color="black",fill=input$corr.color) + 
+      ylab(input$corr_y) + xlab(input$corr_x) + geom_smooth(aes(x=x2,y=y2),method="lm",color="black",linetype="dashed")
+    p <- p + geom_label(aes(label=paste0("R-squared = ",round(summary(lm(y2~x2))$r.squared,2)),
+                            x=max(x2)*0.2,y=max(y2)*0.8),size=rel(5), fontface="bold",
+                        label.padding=unit(0.5,"lines"))}
   if(input$corr_theme== "classic") {p <- p + theme_classic()}
   if(input$corr_theme== "b/w") {p <- p + theme_bw()}
   if(input$corr_theme== "minimal") {p <- p + theme_minimal()}
@@ -194,6 +203,11 @@ prot_box <- reactive({
   prot_filt <- inter_df[protein == inter_df$V3,]
   p <- ggplot(prot_filt,aes(x=V2,y=V4)) + geom_boxplot(fill=input$box.color) + 
     ylab("Abundance") + xlab("")
+  if(input$prot_log == "Yes"){
+    prot_filt$V4 <- log10(prot_filt$V4)
+    prot_filt$V4[!is.finite(prot_filt$V4)] <- 0
+    p <- ggplot(prot_filt,aes(x=V2,y=V4)) + geom_boxplot(fill=input$box.color) + 
+    ylab("Abundance") + xlab("")}
   if(input$box_theme== "classic") {p <- p + theme_classic()}
   if(input$box_theme== "b/w") {p <- p + theme_bw()}
   if(input$box_theme== "minimal") {p <- p + theme_minimal()}

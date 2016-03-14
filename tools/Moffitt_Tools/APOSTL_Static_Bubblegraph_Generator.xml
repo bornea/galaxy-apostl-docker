@@ -1,6 +1,6 @@
-<tool id="Bubblebeam_For_SAINT" name="Bubblebeam For SAINT">
+<tool id="APOSTL_Static_Bubblegraph_Generator" name="APOSTL Static Bubblegraph Generator">
   <description></description>
-  <command interpreter="python">Bubblebeam_For_SAINT_wrapper.py $list_file $prey_file $crapome $color $label $cutoff $type $inc_file $exc_file $outfile $NSAF_zoom $SAINT_zoom $SAINT $NSAF </command>
+  <command interpreter="python">APOSTL_Static_Bubblegraph_Generator.py $list_file $prey_file $crapome $color $label $cutoff $type $inc_file $exc_file $outfile $NSAF_zoom $SAINT_zoom $SAINT $NSAF </command>
   <inputs>
     <param type="select" name="type" label="MaxQuant or Scaffold">
       <option value="MQ">MaxQuant</option>

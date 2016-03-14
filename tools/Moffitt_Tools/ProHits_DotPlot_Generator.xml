@@ -1,6 +1,6 @@
-<tool id="dotplot_runner" name="Dotplot ProHits">
+<tool id="ProHits_DotPlot_Generator" name="ProHits DotPlot Generator">
   <description></description>
-  <command interpreter="python">dotplot_runner.py $saint_file $FDR1 $FDR2 $spec_max $dotplot $heatmap $estimated $stats</command>
+  <command interpreter="python">ProHits_DotPlot_Generator.py $saint_file $FDR1 $FDR2 $spec_max $dotplot $heatmap $estimated $stats</command>
   <inputs>
     <param format="txt" name="saint_file" type="data" label="SAINT Output"/>
     <param type="float" name="FDR1" label="False Discovery Rate 1" value="0.01"/>
