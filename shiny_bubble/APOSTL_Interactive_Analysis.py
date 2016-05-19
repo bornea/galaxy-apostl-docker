@@ -23,6 +23,7 @@
 import os
 import sys
 import time
+import socket
 
 input_list = open(sys.argv[1], 'r')
 prey_input = open(sys.argv[2], 'r')
@@ -75,9 +76,9 @@ inter_file.close()
 
 #cmd1 = r"touch '/srv/shiny-server/" + str(stamped_app) + r"/restart.txt"
 #os.system(cmd1)
-
+ip_id = socket.gethostbyname(socket.gethostname())
 with open("shiny.txt", "wt") as x:
-    x.write("<html><body> Open <a href=\"http://54.213.221.126:3838/" +
+    x.write("<html><body> Open <a href=\"http://"+  str(ip_id)  + ":3838/" +
             str(stamped_app) + "\">APOSTL Interactive Analysis</a> in your browser to view shiny app. If there are issues with the sizing within galaxy you can right" 
             + " click and open in a new tab or window.</body></html>")
 
