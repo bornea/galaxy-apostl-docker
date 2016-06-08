@@ -1,47 +1,60 @@
-<h2>APOSTL Walkthrough</h2>
-<p>This Walkthrough will guide you through using APOSTL and the Galaxy framework it was built on.</p>
-<h3>Create User Account</h3>
-<p>In order to get full access to the all aspects of the server you must create an account.</p>
-<ul><li>To do so please select the Register button under the User tab on the menu.</li></ul>
-<img src="http://54.213.221.126:8080/static/wk_images/register_button.png" alt="register_button"/>
-<ul><li>Fill out the form with your e-mail, password and diplay name.</li></ul>
-<img src="http://54.213.221.126:8080/static/wk_images/register_form.png" alt="register_form"/>
-<ul><li>Once you click submit you will be redirected to the Home page.</li></ul>
-<hr/>
-<h3>APOSTL Tools</h3>
-<p>All of the tools in the APOSTL package are on the left located under APOSTL Tools.</p>
-<a><div align="center"><img src="http://54.213.221.126:8080/static/wk_images/apostl_tools.png" alt="register_form"/></div></a>
-</br>
-<p>Instructions for tools can be found at: <a href="http://54.213.221.126:8080/static/wk_images/SAINTexpress-manual.pdf">SAINT User Manual</a> and <a href="http://54.213.221.126:8080/static/welcome.html#pre-processing">APOSTL Manual</a>.</p>
-<ul><li>The DotPlot tool is a limited version of the full DotPlot tool that runs only the biclustering method of analysis. The full version can be found at <a href="http://prohitstools.mshri.on.ca/">Prohits Visualization Tool</a>.</li></ul>
-<hr/>
-<h3>Workflows</h3>
-<p>Access the Published Workflows for both Scaffold and MaxQuant by selecting Shared Workflows under the Shared Data tab on the menu.</p>
-<img src="http://54.213.221.126:8080/static/wk_images/shared_wrkfl.png" alt="shared_wrkfl"/>
-<p>The MaxQuant and Scaffold Workflows are the same except the Preprocessing tool has MaxQuant of Scaffold selected respectively.</p>
-<p>Select either Workflow by clicking on it.</p>
-<ul><li>The shared Worflow will show you all the steps involved, the Workflow can be imported with plus button, and downloaded using the floppy disk icon in the top right corner.</li></ul>
-<img src="http://54.213.221.126:8080/static/wk_images/share_flow.png" alt="share_flow"/>
-<p>Once imported the Workflows can now be accessed from the Workflow menu tab.</p>
-<img src="http://54.213.221.126:8080/static/wk_images/wrkflw_menu.png" alt="wrkflw_menu"/>
-<p>The Workflow can be run or edited by clicking on the Workflow and selecting Run or Edit rexpectively.</p>
-<img src="http://54.213.221.126:8080/static/wk_images/wkflw_select.png" alt="wkflw_select"/>
-<p>When Run the Worklow steps will have certian variables preset but the Scaffold or MaxQuant input and bait file must be provided. Other variables can be used but are not needed (i.e. a custom fasta database for identification of proteins).</p>
-<img src="http://54.213.221.126:8080/static/wk_images/wrkflw_items.png" alt="wrkflw_items"/>
-<p>Once the job is set press the Run Workflow button at the bottom of the page.</p>
-<img src="http://54.213.221.126:8080/static/wk_images/run_wrkflw.png" alt="run_wrkflw"/>
-<hr/>
-<h3>Histories</h3>
-<p>Access the Published Histories for both Scaffold and MaxQuant by selecting Shared Histories under the Shared Data tab on the menu.</p>
-<img src="http://54.213.221.126:8080/static/wk_images/shared_histories.png" alt="shared_histories"/>
-<p>Select either History by clicking on it.</p>
-<ul><li>The shared History will show you all the steps completed, the History can be imported with the Import History in the upper right hand corner.</li></ul>
-<img src="http://54.213.221.126:8080/static/wk_images/share_history.png" alt="share_history"/>
-<p>Once imported the History will be shown in the History right side column.</p>
-<ul><li>When clicked on the dataset will expand. The eye button will open the dataset for viewing in the web browser, and the floppy dick icon can be used to download the dataset.</ul></li>
-<img src="http://54.213.221.126:8080/static/wk_images/his_panel.png" alt="his_panel"/>
-<p>The shiny version can be accessed by selecting the Shiny dataset, hitting the eye button and click on the APOSTL Interactive Analysis link (or right click and open in new tab).</p>
-<img src="http://54.213.221.126:8080/static/wk_images/open_shiny.png" alt="open_shiny.png"/>
-<p>Any job can be run with the same settings using the circular arrows button.</p>
-<img src="http://54.213.221.126:8080/static/wk_images/rerun.png" alt="rerun.png"/>
-<hr/>
+<h2 style="font-family: Helvetica;">APOSTL Walkthrough</h2>
+<p style="font-family: Helvetica;">This walkthrough will guide you through using APOSTL with sample data and pre-made workflows available in this Galaxy instance.</p>
+<h3 style="font-family: Helvetica;">1) Create a User Account</h3>
+<p style="font-family: Helvetica;">Creating a user account allows you to access all the tools and features of APOSTL. User accounts are free, are generated immediately, and can be used immediately.Please select the <span style="font-weight: bold;">Register</span> button under the <span style="font-weight: bold;">User</span> tab on the menu.</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/register_button.png" alt="register_button" /> <br style="font-family: Helvetica;" /> <span style="font-family: Helvetica;"><br /> Fill out the form with your e-mail, a strong password, and a diplay name (mainly for sharing data/workflows with other users; data is not shared automatically).</span><br style="font-family: Helvetica;" /> <img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/register_form.png" alt="register_form" /> <br style="font-family: Helvetica;" /> <span style="font-family: Helvetica;">Once you click <span style="font-weight: bold;">Submit</span> you will be redirected to the Home page. Although this walkthrough focuses on using pre-defined workflows, all of the tools that make up APOSTL can be accessed on the left hand side of the screen under APOSTL Tools. </span></p>
+<div align="center"><img src="http://206.81.164.101/static/wk_images/apostl_tools.png" alt="register_form" /></div>
+<p>&nbsp;</p>
+<p style="font-family: Helvetica;">Instructions for some of the tools are provided on their respective pages. For help with tools maintained by other groups, please see <span style="color: #fd1701;"><span style="color: #000000;">the <a href="http://206.81.164.101/static/wk_images/SAINTexpress-manual.pdf">SAINT user manual</a>, the <a href="http://prohitsms.com/Prohits_download/list.php">ProHits user manual</a>, and the <a href="http://crapome.org/">crapome guide</a></span>.</span>&nbsp;</p>
+<h3><span style="font-weight: bold; font-family: Helvetica;">2) Upload Data</span></h3>
+<p style="font-family: Helvetica;"><span style="color: #000000;">One file is needed to complete the entire APOSTL work flow, the MaxQuant&nbsp;<em>peptides.txt&nbsp;</em>a Scaffold <em>Sample Report</em>. Uploading the file can be accomplished by selecting either the upload button or the upload tool on the upper left hand side.&nbsp; </span></p>
+<p style="font-family: Helvetica;"><span style="color: #000000;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/upload_button.png" alt="" width="231" height="378" /></span></p>
+<p style="font-family: Helvetica;"><span style="color: #000000;">Both option will bring up the upload interface where you can drag and drop a file or select <strong>Choose a local file</strong>. When uploading it is best to leave the Type as auto-detect and the Genome as unspecified. </span></p>
+<p style="font-family: Helvetica;"><span style="color: #000000;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/upload_screen.png" alt="" width="642" height="399" />Once your files have been selected use the <strong>Start</strong> button to initiate the upload.</span></p>
+<h3 style="font-family: Helvetica;">3) <span style="font-weight: bold;">SAINT Pre-processing</span> Tool and Bait-create</h3>
+<p style="font-family: Helvetica;">A bait file can also be provided by the user using an upload functionality, for formatting on the bait file refer to the <span style="color: #fd1701;"><span style="color: #000000;"><a href="http://206.81.164.101/static/wk_images/SAINTexpress-manual.pdf">SAINT user manual</a></span></span>. If one is not provided it can be created with the<strong> SAINT pre-processing</strong> tool's Bait Create Function.</p>
+<p style="font-family: Helvetica;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/preproc.png" alt="" width="216" height="342" /></p>
+<p style="font-family: Helvetica;">To use this function when using the preprocessing tool select<strong> No</strong> for Are You Providing Your Own bait file. Select the <strong>Insert Bait Create</strong> <span style="color: #000000;">to add additional baits which require the Bait, a Bait group assignment and needs to set to control or experimental.&nbsp;</span></p>
+<p style="font-family: Helvetica;"><span style="color: #000000;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/bait_create.png" alt="" width="615" height="466" /></span></p>
+<p style="font-family: Helvetica;"><span style="color: #000000;">This approach has the advantage of checking your baits against the Scaffold or MaxQuant file prior to using SAINT and ensures proper formatting of the bait file. </span><strong><span style="color: red;"><br /></span></strong></p>
+<h3 style="font-family: Helvetica;">4) Select a Workflow</h3>
+<p style="font-family: Helvetica;">The Galaxy portion of APOSTL is a number of individual tools strung together using workflows. To access the pre-made workflows available on this Galaxy instance, select the <span style="font-weight: bold;">Shared Data</span> dropdown followed by <span style="font-weight: bold;">Published Workflows</span> on the top menu.</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/shared_wrkfl.png" alt="shared_wrkfl" /></p>
+<p style="font-family: Helvetica;">You will be able to select from two pre-made workflows, depending on the type of data you are using (MaxQuant or Scaffold).</p>
+<p style="font-family: Helvetica;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/wkflws.png" alt="" width="739" height="172" /></p>
+<p style="font-family: Helvetica;">&nbsp;</p>
+<p style="font-family: Helvetica;">Alternatively, you can click on the workflow name directly to view each step and the presets involved. From this page the workflow can be imported with the <span style="font-weight: bold;">+</span> button in the top right, and the workflow can be downloaded using the floppy disk icon in the top right corner.&nbsp;</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/share_flow.png" alt="share_flow" width="720" height="222" /></p>
+<h3 style="font-family: Helvetica;">5) Importing Workflows</h3>
+<p style="font-family: Helvetica;">If the user is not using apostl.moffitt.org or the provided docker image the workflows will need to be imported into the galaxy instance. This can be accomplished by selecting <strong>Workflow</strong> and the <strong>Upload or import workflow. </strong></p>
+<p style="font-family: Helvetica;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/uploadwrkflw.png" alt="" width="755" height="62" /></p>
+<p style="font-family: Helvetica;">The two workflows can be found at <a href="https://github.com/bornea/APOSTL/tree/master/Workflows">Github Workflows</a> once dowloaded to your local machine they can be imported into any galaxy instance which has APOSTL tools installed.</p>
+<h3 style="font-family: Helvetica;">6) Using a Workflow</h3>
+<p style="font-family: Helvetica;">Once imported, the workflows can be accessed from the <span style="font-weight: bold;">Workflow</span> menu tab at the top of the screen.</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/wrkflw_menu.png" alt="wrkflw_menu" /></p>
+<p style="font-family: Helvetica;">The Workflow can be run or edited by clicking on the Workflow and selecting <span style="font-weight: bold;">Run</span> or <span style="font-weight: bold;">Edit</span>. Select the workflow you just imported and click <span style="font-weight: bold;">Run.&nbsp;</span></p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/wkflw_select.png" alt="wkflw_select" /></p>
+<p style="font-family: Helvetica;">Select your previously uploaded Scaffold or MaxQuant output from step 2a using the dropdown menus. You will also need to provide a bait file unless you just generated one using step 2b. Other options can be chosen at this time but are not required (i.e. a custom fasta database for identification of proteins). Unless otherwise specified, APOSTL will use<span style="color: #000000;"> Uniprot database updated on 08//2014.</span></p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/wrkflw_items.png" alt="wrkflw_items" width="750" height="397" /></p>
+<p style="font-family: Helvetica;">Once you have selected the necessary files and options, click the <span style="font-weight: bold;">Run Workflow</span> button at the bottom of the page.</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/run_wrkflw.png" alt="run_wrkflw" /><br /> <br /> <span style="font-family: Helvetica;">The jobs will begin running and show up in your History on the right side of the screen</span><span style="font-family: Helvetica;">. Jobs that successfully complete will be colored in green. Jobs that do not successfully complete will be colored red and the execution of the workflow will be halted. If everything completes successfully, select the xx output, click the eye icon, and click the link to be taken to the Shiny portion of APOSTL. <br /> <br /></span></p>
+<h3 style="font-family: Helvetica;">7) Trouble Shooting</h3>
+<p><span style="font-family: Helvetica;">APOSTL has been tested on a number of datasets and different species. The most common errors in Galaxy typically stem from bad formatting of input files (e.g., spaces instead of tabs in a file that should be <span style="font-style: italic;">tab delimited</span>). <span style="color: red;"><span style="color: black;">APOSTL has been tested with MaxQuant version 1.2.2.5<span style="color: red;"> <span style="color: black;">as well as Scaffold version</span> <span style="color: #000000;">4.3.4.</span> </span></span></span></span><span style="font-family: Helvetica;"> If you are using properly formatted input files from a software known to work with APOSTL, then<span style="color: #000000;"> click on the Bug Report </span></span><span style="font-family: Helvetica;"><span style="color: red;">. <span style="color: black;">We are happy to hear from you if you are experiencing difficulties getting APOSTL to work. Please send questions or other correspondence to<span style="color: #000000;"> <a href="mailto:Paul.Stewart@moffitt.org">Paul Stewart</a>.</span></span></span><br /> <br /> </span></p>
+<h3 style="font-weight: bold; font-family: Helvetica;">8) Pre-published History</h3>
+<p style="font-family: Helvetica;">Access the Published Histories for both Scaffold and MaxQuant by selecting Shared Histories under the Shared Data tab on the menu.</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/shared_histories.png" alt="shared_histories" /></p>
+<p style="font-family: Helvetica;">Select either History by clicking on it.</p>
+<ul style="font-family: Helvetica;">
+<li>The shared History will show you all the steps completed, the History can be imported with the Import History in the upper right hand corner.</li>
+</ul>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/share_history.png" alt="share_history" width="782" height="306" /></p>
+<p style="font-family: Helvetica;">Once imported the History will be shown in the History right side column.</p>
+<ul style="font-family: Helvetica;">
+<li>When clicked on the dataset will expand. The eye button will open the dataset for viewing in the web browser, and the floppy dick icon can be used to download the dataset.</li>
+</ul>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/his_panel.png" alt="his_panel" /></p>
+<p style="font-family: Helvetica;">The shiny version can be accessed by selecting the Shiny dataset, hitting the eye button and click on the APOSTL Interactive Analysis link (or right click and open in new tab).</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/open_shiny.png" alt="open_shiny.png" width="788" height="144" /></p>
+<p style="font-family: Helvetica;">Any job can be run with the same settings using the circular arrows button.</p>
+<p><img style="font-family: Helvetica; display: block; margin-left: auto; margin-right: auto;" src="http://206.81.164.101/static/wk_images/rerun.png" alt="rerun.png" /></p>
+<hr style="font-family: Helvetica;" />
