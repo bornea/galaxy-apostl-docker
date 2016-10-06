@@ -3,8 +3,8 @@
 # Author: Brent Kuenzi
 ################################## Dependencies ###################################################
 library(shiny); library(dplyr); library(tidyr); library(ggplot2); library("devtools")
-library(rcytoscapejs); library(jsonlite); library(clusterProfiler); library(org.Hs.eg.db)
-library(mygene); library(httr); library(ggrepel); library(shinyjs)
+library(visNetwork); library(jsonlite); library(clusterProfiler); library(org.Hs.eg.db)
+library(mygene); library(httr); library(ggrepel); library(shinyjs); library(rcytoscapejs)
 #devtools::install_github("cytoscape/r-cytoscape.js"); # need for dependencies
 #install.packages('ggrepel',type='source') # need for dependencies
 
@@ -38,16 +38,17 @@ merge_files <- function(SAINT_DF, prey_DF, crapome=FALSE) {
   if(crapome!=FALSE) {
     crapome <- read.table(crapome, sep='\t', header=TRUE)
     colnames(crapome) <- c("Prey", "Symbol", "Num.of.Exp", "Ave.SC", "Max.SC")
-    DF1 <- merge(DF, crapome); as.character(DF1$Num.of.Exp); DF1$Symbol <- NULL;
+    DF1 <- merge(DF, crapome,by="Prey"); as.character(DF1$Num.of.Exp); DF1$Symbol <- NULL;
     DF1$Ave.SC <- NULL; DF1$Max.SC <- NULL #remove unnecessary columns
     DF1$Num.of.Exp <- sub("^$", "0 / 1", DF1$Num.of.Exp ) #replace blank values with 0 / 1
     DF <- DF1 %>% separate(Num.of.Exp, c("NumExp", "TotalExp"), " / ") #split into 2 columns
     DF$CrapomePCT <- round(100 - (as.integer(DF$NumExp) / as.integer(DF$TotalExp) * 100), digits=2) #calculate crapome %
+    DF <- DF %>% replace_na(list(CrapomePCT = 100))
     
   }
   DF$FoldChange <- round(log2(DF$FoldChange),digits=2)
+  DF$FoldChange[DF$FoldChange == "-Inf"] <- 0.00
   colnames(DF)[(colnames(DF)=="FoldChange")] <- "log2(FoldChange)"
-  
   DF$SAF <- DF$AvgSpec / DF$Length
   by_bait <-  DF %>% group_by(Bait) %>% mutate("NSAF" = SAF/sum(SAF))
   by_bait$SAF <- NULL
